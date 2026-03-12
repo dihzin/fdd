@@ -169,6 +169,100 @@ uv run fastapi dev app/main.py
 
 Backend padrao: `http://localhost:8000`
 
+## Execucao local por terminal
+
+Use sempre 3 terminais separados: banco, backend e frontend.
+
+### Terminal 1: PostgreSQL Docker
+
+Se o container ja existir:
+
+```powershell
+docker start fdd-postgres
+```
+
+Para validar se o banco subiu:
+
+```powershell
+docker ps
+Test-NetConnection -ComputerName localhost -Port 5432
+```
+
+Se o container ainda nao existir:
+
+```powershell
+docker run --name fdd-postgres `
+  -e POSTGRES_USER=postgres `
+  -e POSTGRES_PASSWORD=postgres `
+  -e POSTGRES_DB=fdd `
+  -p 5432:5432 `
+  -d postgres:16
+```
+
+### Terminal 2: Backend
+
+```powershell
+cd C:\DEV\FDD\backend
+.venv\Scripts\Activate.ps1
+$env:DATABASE_URL="postgresql+psycopg://postgres:postgres@localhost:5432/fdd"
+python -m alembic upgrade head
+python -m uvicorn app.main:app --reload
+```
+
+URLs uteis do backend:
+
+- `http://127.0.0.1:8000`
+- `http://127.0.0.1:8000/docs`
+- `http://127.0.0.1:8000/api/v1/health`
+
+### Terminal 3: Frontend
+
+```powershell
+cd C:\DEV\FDD\frontend
+npm run dev
+```
+
+URL util do frontend:
+
+- `http://localhost:3000`
+
+### Ordem recomendada de subida
+
+1. subir o PostgreSQL
+2. subir o backend
+3. subir o frontend
+4. abrir `http://localhost:3000`
+
+### Encerramento
+
+Para parar frontend ou backend:
+
+```powershell
+Ctrl + C
+```
+
+Para parar o banco:
+
+```powershell
+docker stop fdd-postgres
+```
+
+### Comandos uteis
+
+Rodar testes do backend:
+
+```powershell
+cd C:\DEV\FDD\backend
+.venv\Scripts\Activate.ps1
+python -m pytest
+```
+
+Ver logs do banco:
+
+```powershell
+docker logs -f fdd-postgres
+```
+
 ## Proximos passos imediatos
 
 - adicionar `.env.example` para frontend e backend

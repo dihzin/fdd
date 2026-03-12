@@ -17,31 +17,33 @@ branch_labels = None
 depends_on = None
 
 
-user_role = sa.Enum("admin", "consultant", "reviewer", "viewer", name="user_role")
-project_status = sa.Enum("draft", "active", "on_hold", "completed", "archived", name="project_status")
-project_member_role = sa.Enum("owner", "manager", "consultant", "reviewer", name="project_member_role")
-requirement_type = sa.Enum(
+user_role = postgresql.ENUM("admin", "consultant", "reviewer", "viewer", name="user_role", create_type=False)
+project_status = postgresql.ENUM("draft", "active", "on_hold", "completed", "archived", name="project_status", create_type=False)
+project_member_role = postgresql.ENUM("owner", "manager", "consultant", "reviewer", name="project_member_role", create_type=False)
+requirement_type = postgresql.ENUM(
     "business",
     "functional",
     "technical",
     "integration",
     "report",
     name="requirement_type",
+    create_type=False,
 )
-requirement_priority = sa.Enum("low", "medium", "high", "critical", name="requirement_priority")
-requirement_status = sa.Enum(
+requirement_priority = postgresql.ENUM("low", "medium", "high", "critical", name="requirement_priority", create_type=False)
+requirement_status = postgresql.ENUM(
     "draft",
     "refined",
     "approved",
     "implemented",
     "rejected",
     name="requirement_status",
+    create_type=False,
 )
-solution_status = sa.Enum("draft", "proposed", "approved", "archived", name="solution_status")
-template_scope = sa.Enum("global", "organization", name="template_scope")
-document_type = sa.Enum("fdd", name="document_type")
-document_status = sa.Enum("draft", "in_review", "approved", "exported", "archived", name="document_status")
-section_status = sa.Enum("draft", "generated", "reviewed", "approved", name="section_status")
+solution_status = postgresql.ENUM("draft", "proposed", "approved", "archived", name="solution_status", create_type=False)
+template_scope = postgresql.ENUM("global", "organization", name="template_scope", create_type=False)
+document_type = postgresql.ENUM("fdd", name="document_type", create_type=False)
+document_status = postgresql.ENUM("draft", "in_review", "approved", "exported", "archived", name="document_status", create_type=False)
+section_status = postgresql.ENUM("draft", "generated", "reviewed", "approved", name="section_status", create_type=False)
 
 
 def upgrade() -> None:
