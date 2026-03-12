@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+:root {
+  --background: #edf2f5;
+  --foreground: #132238;
+  --surface: #ffffff;
+  --surface-muted: #eef3f7;
+  --border: #d4dde7;
+  --accent: #0f766e;
+  --accent-strong: #115e59;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(15, 118, 110, 0.05), transparent 24%),
+    radial-gradient(circle at right 15%, rgba(16, 83, 132, 0.05), transparent 20%),
+    linear-gradient(180deg, #f6f8fb 0%, #eaf0f4 100%);
+  color: var(--foreground);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.ProseMirror {
+  outline: none;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(19, 34, 56, 0.18);
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.fdd-editor h2,
+.fdd-editor h3 {
+  font-family: var(--font-heading), sans-serif;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.fdd-editor h2 {
+  margin: 0 0 0.85rem;
+  font-size: 1.6rem;
+}
+
+.fdd-editor h3 {
+  margin: 1.25rem 0 0.6rem;
+  font-size: 1.2rem;
+}
+
+.fdd-editor p {
+  margin: 0.7rem 0;
+}
+
+.fdd-editor ul,
+.fdd-editor ol {
+  margin: 0.8rem 0;
+  padding-left: 1.3rem;
+}
+
+.fdd-editor blockquote {
+  margin: 1rem 0;
+  border-left: 4px solid #99f6e4;
+  padding-left: 1rem;
+  color: #475569;
+}

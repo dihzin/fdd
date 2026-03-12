@@ -1,0 +1,41 @@
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+
+# IDE / editors
+.idea/
+.vscode/
+*.swp
+*.swo
+.agents/
+skills-lock.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.venv/
+venv/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Local storage / generated exports
+backend/storage/exports/
